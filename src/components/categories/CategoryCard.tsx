@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 interface CategoryProps {
@@ -17,7 +18,7 @@ const CategoryCard = ({ category }: CategoryProps) => {
         />
         <div className="p-10">
           <h1 className=" text-xl">
-            <Link href={`/category/${category.category_id}`}>
+            <Link href={`/categories/${category.category_id}`}>
               {category.name}
             </Link>
           </h1>

@@ -6,6 +6,7 @@ interface Category {
     SEO_title: string;
     SEO_description: string;
     SEO_Keywords: string;
+    posts: Post[]
 }
 
 // Тип для тега

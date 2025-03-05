@@ -1,3 +1,4 @@
+"use client"
 interface PostProps{
     post: Post;
 }

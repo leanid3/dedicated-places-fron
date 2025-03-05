@@ -15,9 +15,9 @@ export const getPost = async (post_id: number): Promise<Post> => {
     }
 }
 
-export const getPosts = async (category_id: number) : Promise<Post[] | Error> => {
+export const getPosts = async (category_id: number) : Promise<Post[]> => {
     try {
-        const response = await fetch(`${API_URL}/posts?category=${category_id}`)
+        const response = await fetch(`${API_URL}/api/v1/posts?category=${category_id}`)
         if (!response.ok) throw new Error('посты не найдены')
         const posts =  await response.json()
         return posts.data

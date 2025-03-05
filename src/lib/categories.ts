@@ -15,11 +15,12 @@ export const getCategories = async (): Promise<Category[]> => {
 export const getCategory = async (id: number): Promise<Category> => {
     try {
         const response = await fetch(`${API_URL}/api/v1/category/${id}`)
+        console.log(`${API_URL}/api/v1/category/${id}`)
         if (!response.ok) throw new Error(`Ошибка: ${response.status} - ${response.statusText}`)
         const responseData = await response.json()
         return responseData.data
     } catch (error) {
-        console.error('Ошибка при получении категории' + error)
+        console.error('Ошибка при получении категории: ' + error)
         throw new Error('категория не найдена')
     }
 }
