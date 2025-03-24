@@ -17,7 +17,8 @@ interface Tag {
 }
 
 interface User {
-
+    name: string;
+    email: string;
 }
 
 interface Comment {
@@ -58,4 +59,23 @@ interface Post {
     comments: Comment[] | null; // Уточните тип, если знаете структуру
     created_at: Date;
     updated_at: Date;
+}
+
+
+interface AuthState {
+  user: User | null;
+  loading: boolean;
+  error: string | null;
+}
+
+interface LoginData {
+  email: string;
+  password: string;
+}
+
+interface RegisterData extends LoginData {
+  name: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
 }

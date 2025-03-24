@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import QueryProvider from "@/lib/providers/QueryProvider";
-import AuthProvider from "@/lib/providers/AuthProvider";
+import { useAuthCheck } from "@/lib/hooks/useAuthCheck";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,12 +25,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useAuthCheck()
   return (
     <html lang="en">
       <body className=" bg-amber-50">
        <Header/>
        <main className='container mx-auto'>
-        <QueryProvider><AuthProvider>{children}</AuthProvider></QueryProvider>
+        <QueryProvider>{children}</QueryProvider>
        </main>
       </body>
     </html>
