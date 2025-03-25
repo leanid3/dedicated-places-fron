@@ -7,6 +7,7 @@ const ProfilePage = () => {
   return (
     <ProtectedRoute>
       <div>
+        //а вот тут имя и почта (тестовый коммит)
         {user?.name}
         {user?.email}
       </div>
