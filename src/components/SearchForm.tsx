@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import style from "./search.module.css";
 
 interface SearchFormInput {
   query: string;
@@ -23,7 +24,7 @@ export default function SearchForm() {
     router.push(`/search?query=${encodeURIComponent(data.query)}`);
   };
   return (
-    <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <form className={style.search} onSubmit={handleSubmit(onSubmit)}>
       <div className="flex">
         <input
           {...register("query", { required: true })}
@@ -42,7 +43,7 @@ export default function SearchForm() {
       <div className="flex h-12 mt-2">
         {errors.query && (
           <span className=" w-full text-center py-2 border-4 border-red-700 rounded-2xl bg-red-300 text-red-700 font-bold">
-           Поле обязательно для заполенения
+            Поле обязательно для заполенения
           </span>
         )}
       </div>

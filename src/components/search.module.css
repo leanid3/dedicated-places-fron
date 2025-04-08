@@ -1,0 +1,8 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  margin-top: -15px;
+  padding-top: 80px;
+  background-color: white;
+  border-radius: 15px;
+}

@@ -1,4 +1,5 @@
 import SearchForm from "@/components/SearchForm";
+import style from "./page.module.css";
 import {
   ChatBubbleLeftIcon,
   HeartIcon,
@@ -7,18 +8,15 @@ import {
 export default async function Home() {
   return (
     <section>
-      <div className="text-center py-10 px-4 sm:px-0">
-        <h1 className="text-4xl font-bold ">
+      <div className={style.hop}>
+        <h1 className={style.h1}>
           {" "}
-          Найдите места, где вам будет комфортно
+          Найдите места, где <span className={style.yellow}>
+            вам
+          </span> будет <span className={style.yellow}>комфортно</span>
         </h1>
-        <p className="text-lg text-gray-600 mb-8">
-          {" "}
-          Каталог заведений с проверенной информацией о доступности для
-          маломобильных граждан
-        </p>
-        <SearchForm/>
       </div>
+      <SearchForm />
       <div className="container mx-auto grid md:grid-cols-3 gap-8 py-12">
         <div className="text-center">
           <MapPinIcon className="h-12 w-12 mx-auto text-amber-400" />
@@ -38,7 +36,6 @@ export default async function Home() {
           <p>Сообщайте о новых местах и изменениях в доступности</p>
         </div>
       </div>
-
     </section>
   );
 }

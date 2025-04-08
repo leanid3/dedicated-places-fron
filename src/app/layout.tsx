@@ -28,11 +28,11 @@ export default function RootLayout({
   // useAuthCheck()
   return (
     <html lang="en">
-      <body className=" bg-amber-50">
-       <Header/>
-       <main className='container mx-auto'>
-        <QueryProvider>{children}</QueryProvider>
-       </main>
+      <body>
+        <Header />
+        <main className="container mx-auto">
+          <QueryProvider>{children}</QueryProvider>
+        </main>
       </body>
     </html>
   );

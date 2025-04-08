@@ -68,10 +68,7 @@
   padding: 0 20px;
   border: none;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -165,4 +162,46 @@ a.secondary {
   .logo {
     filter: invert();
   }
+}
+
+.hop {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-image: url("bg.jpg");
+  background-size: cover;
+  background-position: top;
+  height: 40vh;
+}
+
+@media (min-width: 720px) {
+  .hop {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .h1 {
+    font-size: 7rem;
+    padding-left: 50px;
+  }
+}
+
+@media (max-width: 720px) {
+  .h1 {
+    font-size: 3rem;
+    padding-left: 30px;
+  }
+}
+
+.h1 {
+  font-weight: 700;
+  color: white;
+  text-align: left;
+
+  padding-bottom: 15px;
+}
+
+.yellow {
+  color: #ebc03d;
 }
