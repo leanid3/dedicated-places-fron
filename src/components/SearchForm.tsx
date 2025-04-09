@@ -2,8 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
+import { useState, useEffect, useRef } from "react"; // Импортируем useRef
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./search.module.css";
+import { getTags } from "../lib/tags";
 
 interface SearchFormInput {
   query: string;
@@ -23,22 +25,57 @@ export default function SearchForm() {
 
     router.push(`/search?query=${encodeURIComponent(data.query)}`);
   };
+
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      const result = await getTags();
+      if (result instanceof Error) {
+        setError(result.message);
+      } else {
+        setTags(result);
+      }
+    };
+
+    fetchTags();
+  }, []);
+
+  const lastTagYellow = useRef(false);
+
+  if (error) return <div>{error}</div>;
+
   return (
-    <form className={style.search} onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex">
+    <form className={style.searchForm} onSubmit={handleSubmit(onSubmit)}>
+      <div className={style.search}>
         <input
           {...register("query", { required: true })}
-          placeholder="Введите текст..."
+          placeholder="Поиск..."
           defaultValue={""}
           type="text"
-          className=" basis-3/4 border-2 border-black py-2 px-2 rounded-4xl focus:outline-amber-500  focus:outline-2 focus:outline-offset-2 focus:border-white focus:shadow-xl"
+          className=""
         />
-        <button
-          type="submit"
-          className="basis-1/4 px-2 py-1 ms-2 rounded-3xl bg-amber-500 hover:bg-amber-600 focus:outline-2 focus:outline-offset-2 font-bold text-gray-100 focus:text-gray-300 focus:outline-amber-500 focus:shadow-xl active:bg-amber-700"
-        >
-          Поиск
-        </button>
+        <button type="submit" className={style.button}></button>
+      </div>
+      <div className={style.tags}>
+        {tags.map((tag) => {
+          let isRandom = Math.random() < 0.5;
+          if (lastTagYellow.current && isRandom) {
+            isRandom = false;
+          }
+          lastTagYellow.current = isRandom;
+
+          return (
+            <button
+              className={`${style.tag} ${isRandom ? style.yellow : ""}`}
+              key={tag.tag_id}
+              disabled
+            >
+              {tag.name}
+            </button>
+          );
+        })}
       </div>
       <div className="flex h-12 mt-2">
         {errors.query && (

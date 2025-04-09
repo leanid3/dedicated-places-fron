@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        <main className="container mx-auto">
+        <main>
           <QueryProvider>{children}</QueryProvider>
         </main>
       </body>
