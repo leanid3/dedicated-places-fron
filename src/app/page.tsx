@@ -6,6 +6,7 @@ import {
   MapPinIcon,
 } from "@heroicons/react/16/solid";
 export default async function Home() {
+  
   return (
     <section>
       <div className={style.hop}>
