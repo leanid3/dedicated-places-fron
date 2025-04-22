@@ -173,6 +173,18 @@ a.secondary {
   background-size: cover;
   background-position: top;
   height: 40vh;
+  position: relative;
+}
+
+.imgHop {
+  position: absolute;
+  background-color: gray;
+  width: 120px;
+  height: 120px;
+  border-radius: 20em;
+  bottom: 0;
+  margin-bottom: -60px;
+  right: 150px;
 }
 
 @media (min-width: 720px) {
@@ -204,4 +216,159 @@ a.secondary {
 
 .yellow {
   color: #ebc03d;
+}
+
+.popularPlaces {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.h2 {
+  font-weight: 700;
+  font-size: 4rem;
+}
+
+.h4 {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+.textCard {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  min-height: 400px;
+}
+
+.text {
+  width: 100%;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.headText,
+.footText {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footText {
+  margin-top: 30px;
+}
+
+.address,
+.workHours {
+  max-width: 40%;
+}
+
+.workHours {
+  margin-right: 20%;
+}
+
+.details {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+
+.concl {
+  padding-left: 100px;
+  padding-right: 100px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.textConcl {
+  margin-top: 20px;
+}
+
+.empls {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
+  min-height: 500px;
+}
+
+.empl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.emplImg {
+  background-color: gray;
+  width: 300px;
+  height: 300px;
+  border-radius: 20em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.stars {
+  background-color: #ebc03d;
+  width: 300px;
+  height: 50px;
+}
+
+.h3 {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.h3nc {
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.imageSlider {
+  height: 380px;
+  width: 720px;
+  background-color: gray;
+  position: relative;
+}
+
+.arrows {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrowLeft,
+.arrowRight {
+  width: 80px;
+  height: 80px;
+  background-color: #ebc03d;
+  border-radius: 20em;
+  position: relative;
+}
+
+.arrowLeft {
+  left: -40px;
+}
+
+.arrowRight {
+  right: -40px;
 }
