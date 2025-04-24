@@ -29,6 +29,11 @@ export default function RootLayout({
   // useAuthCheck()
   return (
     <html lang="en">
+      <script
+          async
+          src="https://cdn.userway.org/widget.js"
+          data-account="ВАШ_API_КЛЮЧ"
+        ></script>
       <body>
         <Header />
         <main>
