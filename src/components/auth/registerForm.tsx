@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
-import style from "./register.module.css";
+import style from "./regLog.module.css";
 import { useMask } from "@react-input/mask";
 
 const RegisterForm = () => {
@@ -128,7 +128,7 @@ const RegisterForm = () => {
         </div>
       )}
 
-      <button type="submit" className={style.but}>
+      <button type="submit" className={style.but1}>
         Регистрация
       </button>
     </form>

@@ -21,8 +21,16 @@
   width: 17%;
 }
 
-.but {
+.but1 {
   margin-top: 200px;
+  border-radius: 5px;
+  padding: 5px;
+  width: 17%;
+  background-color: #ebc03d;
+  font-weight: 700;
+}
+
+.but2 {
   border-radius: 5px;
   padding: 5px;
   width: 17%;

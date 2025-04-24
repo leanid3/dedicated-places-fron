@@ -19,7 +19,7 @@ const Header = () => {
           <Link className={style.link} href="#">
             БЛОГ
           </Link>
-          <Link className={style.link} href="#">
+          <Link className={style.link} href="/login">
             ВХОД
           </Link>
           <Link className={style.lr} href="/register">
