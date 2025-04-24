@@ -22,7 +22,7 @@ const Header = () => {
           <Link className={style.link} href="#">
             ВХОД
           </Link>
-          <Link className={style.lr} href="#">
+          <Link className={style.lr} href="/register">
             РЕГИСТРАЦИЯ
           </Link>
         </div>
