@@ -1,0 +1,25 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  width: 350px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.h1 {
+  font-size: 7rem;
+  font-weight: 700;
+  color: #ebc03d;
+  text-align: center;
+}

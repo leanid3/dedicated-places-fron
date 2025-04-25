@@ -1,19 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import { Post } from "@/types/types";
+import style from "./posts.module.css";
 interface PostProps {
   post: Post;
 }
 
 const PostCard = ({ post }: PostProps) => {
   return (
-    <article className="flex flex-col h-90 border-4 border-amber-500 rounded-3xl text-center mx-5 sm:mx-0 hover:shadow-xl focus:outline-2 focus:outline-offset-2">
-      <div
-        className="flex flex-3/5"
-      />
-      <div className="flex-2/5 flex flex-col p-5">
-        <h4 className=" font-bold">{post.title}</h4>
+    <article className={style.card}>
+      <div className={style.left}>
+        <div className={style.imgLeft}></div>
+      </div>
+      <div className={style.right}>
+        <h2 className={style.h2}>{post.title}</h2>
         <p
           className={`${
             post.status == "published" ? ` text-green-500` : "text-red-500"

@@ -1,16 +1,20 @@
-"use client"
-import PostCard from "./PostCard"
-import { Post } from "@/types/types"
+"use client";
+import PostCard from "./PostCard";
+import { Post } from "@/types/types";
+import style from "./posts.module.css";
 
-interface PostsProps{
-    posts: Post[]
+interface PostsProps {
+  posts: Post[];
 }
-const PostList = ({posts}: PostsProps) =>{
-    return(
-        <div className="grid  xl:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-5 py-10">
-            {posts.map((post) =><PostCard key={post.post_id} post={post} />)}
-        </div>
-    )
-}
+const PostList = ({ posts }: PostsProps) => {
+  return (
+    <div className={style.main}>
+      <h1 className={style.h1}>Категория</h1>
+      {posts.map((post) => (
+        <PostCard key={post.post_id} post={post} />
+      ))}
+    </div>
+  );
+};
 
-export default PostList
+export default PostList;
