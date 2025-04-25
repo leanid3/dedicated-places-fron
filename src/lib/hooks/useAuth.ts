@@ -1,29 +1,12 @@
 // hooks/useAuth.ts
-<<<<<<< HEAD
 import { useState, useEffect, useCallback } from 'react';
 import { AuthState, LoginData, RegisterData } from '@/types/types'; // Adjust the import path as necessary
-=======
-import { useState, useEffect, useCallback } from "react";
-
->>>>>>> 117ebafe7d13bcea35904b6a68627d6ecb189209
 export default function useAuth() {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
     loading: true,
     error: null,
   });
-<<<<<<< HEAD
-  const base_url = 'http://127.0.0.1:8000'
-  
-
-
-  const setLoading = (loading: boolean) => {
-    setAuthState((prev: AuthState) => ({ ...prev, loading }));
-  };
-
-  const setError = (error: string | null) => {
-    setAuthState((prev: AuthState) => ({ ...prev, error }));
-=======
   const base_url = "http://127.0.0.1:8000";
 
   useEffect(() => {
@@ -36,7 +19,6 @@ export default function useAuth() {
 
   const setError = (error: string | null) => {
     setAuthState((prev) => ({ ...prev, error }));
->>>>>>> 117ebafe7d13bcea35904b6a68627d6ecb189209
   };
 
   const saveToken = (token: string) => {
