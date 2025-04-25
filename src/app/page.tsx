@@ -37,7 +37,7 @@ export default async function Home() {
               <div className={style.star}></div>
             </div>
           </div>
-          <p>
+          <p className={style.text}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
             saepe et enim, ullam ab quas sequi quasi error voluptate esse
             officiis, nostrum molestiae commodi tenetur nemo, aliquid earum

@@ -1,7 +1,5 @@
 .concl {
   margin-top: 200px;
-  /* padding-left: 100px;
-  padding-right: 100px; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -15,6 +13,7 @@
 
 .textConcl {
   margin-top: 20px;
+  font-size: 1.5rem;
 }
 
 .empls {
