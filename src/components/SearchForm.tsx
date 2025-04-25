@@ -102,6 +102,9 @@ export default function SearchForm() {
           </button>
         ))}
       </div>
+      <button type="button" className={style.tagT}>
+        Все категории
+      </button>
 
       <input type="hidden" {...register("tags")} />
 
