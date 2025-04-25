@@ -226,6 +226,8 @@ a.secondary {
   justify-content: center;
   flex-direction: column;
   gap: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .h2 {
@@ -253,8 +255,8 @@ a.secondary {
 
 .text {
   width: 100%;
-  padding-left: 100px;
-  padding-right: 100px;
+  /* padding-left: 100px;
+  padding-right: 100px; */
 }
 
 .headText,
@@ -283,60 +285,6 @@ a.secondary {
   margin-top: 200px;
 }
 
-.concl {
-  margin-top: 200px;
-  padding-left: 100px;
-  padding-right: 100px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.textConcl {
-  margin-top: 20px;
-}
-
-.empls {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 100px;
-  min-height: 500px;
-}
-
-.empl {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.emplImg1,
-.emplImg2,
-.emplImg3,
-.emplImg4 {
-  width: 300px;
-  height: 300px;
-  border-radius: 20em;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  background-size: cover;
-}
-
-.emplImg1 {
-  background-image: url(sotr1.png);
-}
-
-.emplImg2 {
-  background-image: url(sotr2.png);
-}
-
-.emplImg3 {
-  background-image: url(sotr3.png);
-}
-
-.emplImg4 {
-  background-image: url(sotr4.png);
-}
-
 .stars {
   width: 350px;
   height: 50px;
@@ -354,12 +302,6 @@ a.secondary {
 .h3 {
   font-weight: 700;
   font-size: 3rem;
-}
-
-.h3nc {
-  font-weight: 700;
-  font-size: 3rem;
-  text-align: center;
 }
 
 .slider {

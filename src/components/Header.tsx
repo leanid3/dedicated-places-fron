@@ -10,7 +10,7 @@ const Header = () => {
           {/* <Link className='' href="/users">О НАС</Link>
                     <Link className='' href="/places">Posts</Link>
                     <Link className='' href="/categories">Categories</Link> */}
-          <Link className={style.link} href="#">
+          <Link className={style.link} href="/about">
             О НАС
           </Link>
           <Link className={style.link} href="/events">
