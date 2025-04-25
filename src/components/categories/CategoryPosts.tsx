@@ -1,7 +1,7 @@
 "use client";
 
 import PostList from "../posts/PostList";
-
+import { Category } from "@/types/types";
 interface CategoryPostsProps {
   category: Category;
 }

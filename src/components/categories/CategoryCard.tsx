@@ -1,6 +1,7 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-
+import { Category } from "@/types/types";
 interface CategoryProps {
   category: Category;
 }
@@ -11,10 +12,12 @@ const CategoryCard = ({ category }: CategoryProps) => {
       key={category.category_id}
     >
       <div className=" flex flex-col gap-3">
-        <img
+      <Image
           className="w-full aspect-[4/3] object-cover"
-          src="@/app/favicon.ico"
+          src="@/app/favicon.ico" 
           alt={category.name}
+          width={400} 
+          height={300} 
         />
         <div className="p-10">
           <h1 className=" text-xl">

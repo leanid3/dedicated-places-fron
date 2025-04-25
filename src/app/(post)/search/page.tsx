@@ -3,6 +3,8 @@ import PostList from "@/components/posts/PostList";
 import { searchPosts } from "@/lib/posts";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
+import { Post } from "@/types/types";
+import React, { Suspense } from "react";
 
 const SearchResult = () => {
   const searchParams = useSearchParams();
@@ -24,11 +26,23 @@ const SearchResult = () => {
   if (isError) {
     return <div>Посты не найдены</div>;
   }
-  return <div>
-    {posts && posts.length > 0 ?(
-       <PostList posts={posts} />
-    ): <p>Посты не найдены</p>}
-  </div>;
+  return (
+    <div>
+      {posts && posts.length > 0 ? (
+        <PostList posts={posts} />
+      ) : (
+        <p>Посты не найдены</p>
+      )}
+    </div>
+  );
 };
 
-export default SearchResult;
+const SearchResultWrapper = () => {
+  return (
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <SearchResult />
+    </Suspense>
+  );
+};
+
+export default SearchResultWrapper;

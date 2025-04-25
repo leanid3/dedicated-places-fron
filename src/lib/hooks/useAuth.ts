@@ -1,6 +1,6 @@
 // hooks/useAuth.ts
 import { useState, useEffect, useCallback } from 'react';
-
+import { AuthState, LoginData, RegisterData } from '@/types/types'; // Adjust the import path as necessary
 export default function useAuth() {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
@@ -9,16 +9,14 @@ export default function useAuth() {
   });
   const base_url = 'http://127.0.0.1:8000'
   
-  useEffect(() => {
-    checkAuth();
-  }, []);
+
 
   const setLoading = (loading: boolean) => {
-    setAuthState(prev => ({ ...prev, loading }));
+    setAuthState((prev: AuthState) => ({ ...prev, loading }));
   };
 
   const setError = (error: string | null) => {
-    setAuthState(prev => ({ ...prev, error }));
+    setAuthState((prev: AuthState) => ({ ...prev, error }));
   };
 
   const saveToken = (token: string) => {
@@ -112,6 +110,10 @@ export default function useAuth() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   const login = async (data: LoginData) => {
     setLoading(true);

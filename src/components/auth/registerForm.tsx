@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
 import style from "./register.module.css";
-import { useMask } from "@react-input/mask";
+// import { useMask } from "@react-input/mask";
 
 const RegisterForm = () => {
-  const { register, error, isAuthenticated, loading } = useAuth();
+  const { error, isAuthenticated, loading } = useAuth();
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -16,10 +16,10 @@ const RegisterForm = () => {
     password_confirmation: "",
   });
 
-  const telMask = useMask({
-    mask: "+_(___)-___-__-__",
-    replacement: { _: /\d/ },
-  });
+  // const telMask = useMask({
+  //   mask: "+_(___)-___-__-__",
+  //   replacement: { _: /\d/ },
+  // });
 
   // Перенаправление если пользователь уже авторизован
   useEffect(() => {
@@ -38,12 +38,12 @@ const RegisterForm = () => {
     }
 
     try {
-      const status = await register({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        password_confirmation: formData.password_confirmation,
-      });
+      // const status = await register({
+      //   name: formData.name,
+      //   email: formData.email,
+      //   password: formData.password,
+      //   password_confirmation: formData.password_confirmation,
+      // });
 
       console.log("register success");
       router.push("/login");

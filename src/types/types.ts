@@ -1,5 +1,5 @@
-// Тип для категории
-interface Category {
+// Interface for category
+export interface Category {
     category_id: number;
     name: string;
     description: string;
@@ -9,34 +9,34 @@ interface Category {
     posts: Post[]
 }
 
-// Тип для тега
-interface Tag {
+// Interface for tag
+export interface Tag {
     tag_id: number;
     name: string;
     slug: string;
 }
 
-interface User {
+export interface User {
     name: string;
     email: string;
 }
 
-interface Comment {
+export interface Comment {
     parent_id: number,
     title: string,
     comment: string,
     status: string,
     post_id: number,
-    author: User | any
+    author: User | string
 }
 
-interface MultiField {
+export interface MultiField {
     path: string,
     post_id: number
 }
 
-// Тип для основного ответа
-interface Post {
+// Interface for main response
+export interface Post {
     post_id: number;
     title: string;
     content: string;
@@ -47,7 +47,7 @@ interface Post {
     type: string;
     stock: number;
     price: number | null;
-    MultiFields: MultiField | null; // Уточните тип, если знаете структуру
+    MultiFields: MultiField | null; // Specify type if known
     params: string[];
     SEO_title: string;
     SEO_description: string;
@@ -56,24 +56,24 @@ interface Post {
     tags: Tag[] | null;
     comment_count: number;
     comment_status: 'open' | 'closed';
-    comments: Comment[] | null; // Уточните тип, если знаете структуру
+    comments: Comment[] | null; // Specify type if known
     created_at: Date;
     updated_at: Date;
 }
 
 
-interface AuthState {
+export interface AuthState {
   user: User | null;
   loading: boolean;
   error: string | null;
 }
 
-interface LoginData {
+export interface LoginData {
   email: string;
   password: string;
 }
 
-interface RegisterData extends LoginData {
+export interface RegisterData extends LoginData {
   name: string;
   email: string;
   password: string;

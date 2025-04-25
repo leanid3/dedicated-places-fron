@@ -1,6 +1,6 @@
 "use client";
 import CategoryCard from "./CategoryCard";
-
+import { Category } from "@/types/types";
 interface CategoriesProps {
   categories: Category[];
 }

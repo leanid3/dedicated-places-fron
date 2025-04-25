@@ -1,15 +1,13 @@
-import { getPost } from "@/lib/posts";
-
+import { getPost} from "@/lib/posts";
 interface PostProps {
-    params: {
-        id: number;
-    };
+    params: Promise<{
+        id: string;
+    }>;
 }
 
-// Делаем компонент страницы асинхронным
 export default async function Post({ params }: PostProps) {
-    // Используем `await` для получения данных
-    const post: Post = await getPost(params.id);
+    const resolvedParams = await params;
+    const post  = await getPost(Number(resolvedParams.id));
 
     return (
         <div>

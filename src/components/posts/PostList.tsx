@@ -1,5 +1,6 @@
 "use client"
 import PostCard from "./PostCard"
+import { Post } from "@/types/types"
 
 interface PostsProps{
     posts: Post[]

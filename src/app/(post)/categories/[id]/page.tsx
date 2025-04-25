@@ -2,13 +2,14 @@ import CategoryPosts from "@/components/categories/CategoryPosts";
 import { getCategory } from "@/lib/categories";
 
 interface CategoryProps {
-  params: {
-    id: number;
-  };
+  params: Promise<{
+    id: string;
+  }>;
 }
 
 const CategoryPage = async ({ params }: CategoryProps) => {
-  const category = await getCategory(params.id);
+  const resolvedParams = await params;
+  const category = await getCategory(Number(resolvedParams.id));
 
   return (
     <div>

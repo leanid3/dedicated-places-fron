@@ -3,7 +3,6 @@ import CategoriesList from "@/components/categories/CategoriesList";
 import { getCategories } from "@/lib/categories";
 import { useQuery } from "@tanstack/react-query";
 import { Category } from "@/types/types";
-
 const CategoriesPage = () => {
   const {
     data: categories,

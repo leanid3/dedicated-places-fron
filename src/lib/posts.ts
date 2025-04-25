@@ -1,3 +1,5 @@
+import { Post } from "@/types/types";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 if (!API_URL) {
     throw new Error('API_URL не определен');
@@ -22,6 +24,7 @@ export const getPosts = async (category_id: number) : Promise<Post[]> => {
         const posts =  await response.json()
         return posts.data
     } catch (e) {
+        console.error('Ошибка при получении постов' + e)
         throw new Error('не удалось получить категорию')
     }
 }
@@ -56,6 +59,7 @@ export const searchPosts = async (query?: string | null | undefined, tags?: stri
         const post = await response.json();
         return post.data;
     } catch (e) {
+        console.error('Ошибка при поиске постов: ' + e);
         throw new Error('не удалось получить пост');
     }
 };
