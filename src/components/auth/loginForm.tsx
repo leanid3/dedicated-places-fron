@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
 import style from "./regLog.module.css";
-import { useMask } from "@react-input/mask";
+// import { useMask } from "@react-input/mask";
 
 const LoginForm = () => {
   const { register, error, isAuthenticated, loading } = useAuth();
@@ -16,10 +16,10 @@ const LoginForm = () => {
     password_confirmation: "",
   });
 
-  const telMask = useMask({
-    mask: "+_(___)-___-__-__",
-    replacement: { _: /\d/ },
-  });
+  // const telMask = useMask({
+  //   mask: "+_(___)-___-__-__",
+  //   replacement: { _: /\d/ },
+  // });
 
   // Перенаправление если пользователь уже авторизован
   useEffect(() => {
@@ -38,7 +38,7 @@ const LoginForm = () => {
     }
 
     try {
-      const status = await register({
+        await register({
         name: formData.name,
         email: formData.email,
         password: formData.password,

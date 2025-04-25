@@ -1,3 +1,4 @@
+"use client";
 // hooks/useAuth.ts
 import { useState, useEffect, useCallback } from "react";
 import { AuthState, LoginData, RegisterData } from "@/types/types"; // Adjust the import path as necessary
