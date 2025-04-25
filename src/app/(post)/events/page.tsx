@@ -17,10 +17,10 @@ const Events = () => {
                 praesentium fuga nesciunt totam aliquam saepe voluptatem
                 perspiciatis beatae eveniet quibusdam quis blanditiis.
               </p>
-              <p className={style.bot}>
+              <div className={style.bot}>
                 <p className={style.text}>Адрес</p>
                 <p className={style.text}>Дата и время</p>
-              </p>
+              </div>
             </div>
             <div className={style.right}>
               <div className={style.imgRight}></div>
@@ -35,10 +35,10 @@ const Events = () => {
                 praesentium fuga nesciunt totam aliquam saepe voluptatem
                 perspiciatis beatae eveniet quibusdam quis blanditiis.
               </p>
-              <p className={style.bot}>
+              <div className={style.bot}>
                 <p className={style.text}>Адрес</p>
                 <p className={style.text}>Дата и время</p>
-              </p>
+              </div>
             </div>
             <div className={style.right}>
               <div className={style.imgRight}></div>
@@ -53,10 +53,10 @@ const Events = () => {
                 praesentium fuga nesciunt totam aliquam saepe voluptatem
                 perspiciatis beatae eveniet quibusdam quis blanditiis.
               </p>
-              <p className={style.bot}>
+              <div className={style.bot}>
                 <p className={style.text}>Адрес</p>
                 <p className={style.text}>Дата и время</p>
-              </p>
+              </div>
             </div>
             <div className={style.right}>
               <div className={style.imgRight}></div>
