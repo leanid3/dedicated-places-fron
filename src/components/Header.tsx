@@ -13,7 +13,7 @@ const Header = () => {
           <Link className={style.link} href="#">
             О НАС
           </Link>
-          <Link className={style.link} href="#">
+          <Link className={style.link} href="/events">
             МЕРОПРИЯТИЯ
           </Link>
           <Link className={style.link} href="#">

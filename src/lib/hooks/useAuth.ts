@@ -1,5 +1,5 @@
 // hooks/useAuth.ts
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 
 export default function useAuth() {
   const [authState, setAuthState] = useState<AuthState>({
@@ -7,98 +7,99 @@ export default function useAuth() {
     loading: true,
     error: null,
   });
-  const base_url = 'http://127.0.0.1:8000'
-  
+  const base_url = "http://127.0.0.1:8000";
+
   useEffect(() => {
     checkAuth();
   }, []);
 
   const setLoading = (loading: boolean) => {
-    setAuthState(prev => ({ ...prev, loading }));
+    setAuthState((prev) => ({ ...prev, loading }));
   };
 
   const setError = (error: string | null) => {
-    setAuthState(prev => ({ ...prev, error }));
+    setAuthState((prev) => ({ ...prev, error }));
   };
 
   const saveToken = (token: string) => {
-    localStorage.setItem('access_token', token);
+    localStorage.setItem("access_token", token);
   };
 
   const getToken = () => {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem("access_token");
   };
 
   const clearToken = () => {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem("access_token");
   };
 
   const [lastChecked, setLastChecked] = useState<number>(0);
 
-  const checkAuth = useCallback(async (force = false): Promise<boolean> => {
-
-    if (!force && Date.now() - lastChecked < 30000 && authState.user) {
+  const checkAuth = useCallback(
+    async (force = false): Promise<boolean> => {
+      if (!force && Date.now() - lastChecked < 30000 && authState.user) {
         return true;
       }
 
-    setLoading(true);
-    const token = getToken();
-    
-    if (!token) {
-      setAuthState({
-        user: null,
-        loading: false,
-        error: null,
-      });
-      return false;
-    }
+      setLoading(true);
+      const token = getToken();
 
-    try {
-      const response = await fetch('http://your-api-url/api/user', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      if (!token) {
+        setAuthState({
+          user: null,
+          loading: false,
+          error: null,
+        });
+        return false;
+      }
 
-      if (!response.ok) throw new Error('Unauthorized');
+      try {
+        const response = await fetch("http://your-api-url/api/user", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
 
-      const userData = await response.json();
-      setAuthState({
-        user: userData,
-        loading: false,
-        error: null,
-      });
-      return true;
-    } catch (error) {
-      clearToken();
-      setAuthState({
-        user: null,
-        loading: false,
-        error: error instanceof Error ? error.message : 'Auth error',
-      });
-      return false;
-    }
+        if (!response.ok) throw new Error("Unauthorized");
 
-    setLastChecked(Date.now())
+        const userData = await response.json();
+        setAuthState({
+          user: userData,
+          loading: false,
+          error: null,
+        });
+        return true;
+      } catch (error) {
+        clearToken();
+        setAuthState({
+          user: null,
+          loading: false,
+          error: error instanceof Error ? error.message : "Auth error",
+        });
+        return false;
+      }
 
-  }, [lastChecked, authState.user]);
+      setLastChecked(Date.now());
+    },
+    [lastChecked, authState.user]
+  );
 
   const register = async (data: RegisterData) => {
     setLoading(true);
     try {
       const response = await fetch(`${base_url}/api/v1/register`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
       const responseData = await response.json();
-      
+
       if (!response.ok) {
-        throw new Error(responseData.message || 'Registration failed');
+        throw new Error(responseData.message || "Registration failed");
       }
 
       saveToken(responseData.access_token);
@@ -108,7 +109,7 @@ export default function useAuth() {
         error: null,
       });
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Registration error');
+      setError(error instanceof Error ? error.message : "Registration error");
       setLoading(false);
     }
   };
@@ -117,17 +118,17 @@ export default function useAuth() {
     setLoading(true);
     try {
       const response = await fetch(`${base_url}/api/v1//login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
       const responseData = await response.json();
-      
+
       if (!response.ok) {
-        throw new Error(responseData.message || 'Login failed');
+        throw new Error(responseData.message || "Login failed");
       }
 
       saveToken(responseData.access_token);
@@ -137,7 +138,7 @@ export default function useAuth() {
         error: null,
       });
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Login error');
+      setError(error instanceof Error ? error.message : "Login error");
       setLoading(false);
     }
   };
@@ -146,10 +147,10 @@ export default function useAuth() {
     setLoading(true);
     try {
       await fetch(`${base_url}/api/v1//logout`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Authorization': `Bearer ${getToken()}`,
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getToken()}`,
+          "Content-Type": "application/json",
         },
       });
     } finally {
@@ -164,7 +165,7 @@ export default function useAuth() {
 
   return {
     ...authState,
-    user:authState.user,
+    user: authState.user,
     register,
     login,
     logout,

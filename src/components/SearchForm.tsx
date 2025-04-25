@@ -45,9 +45,9 @@ export default function SearchForm() {
   }, []);
 
   const toggleTag = (tagId: number) => {
-    setSelectedTags(prev => {
+    setSelectedTags((prev) => {
       const newTags = prev.includes(tagId)
-        ? prev.filter(id => id !== tagId)
+        ? prev.filter((id) => id !== tagId)
         : [...prev, tagId];
       setValue("tags", newTags);
       return newTags;
@@ -56,12 +56,12 @@ export default function SearchForm() {
 
   const onSubmit: SubmitHandler<SearchFormInput> = (data) => {
     const params = new URLSearchParams();
-    
+
     if (data.query) params.append("query", data.query);
     if (data.tags && data.tags.length > 0) {
-      data.tags?.forEach(tag => params.append("tags[]", tag.toString()));
+      data.tags?.forEach((tag) => params.append("tags[]", tag.toString()));
     }
-    const queryString = decodeURIComponent(params.toString())
+    const queryString = decodeURIComponent(params.toString());
     router.push(`/search?${queryString}`);
   };
 
@@ -71,17 +71,23 @@ export default function SearchForm() {
 
   return (
     <form className={style.searchForm} onSubmit={handleSubmit(onSubmit)}>
-      <div className={style.search}>
+      <div className={style.divSearch}>
         <input
           {...register("query", { required: true })}
-          placeholder="Поиск..."
+          placeholder="Город"
           defaultValue={""}
           type="text"
-          className=""
+          className={style.inpSearch1}
+        />
+        <input
+          {...register("query", { required: true })}
+          placeholder="Поиск"
+          defaultValue={""}
+          type="text"
+          className={style.inpSearch2}
         />
         <button type="submit" className={style.button}></button>
       </div>
-      
       <div className={style.tags}>
         {tags.map((tag) => (
           <button
