@@ -2,13 +2,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
-<<<<<<< HEAD
 import style from "./register.module.css";
 // import { useMask } from "@react-input/mask";
-=======
-import style from "./regLog.module.css";
-import { useMask } from "@react-input/mask";
->>>>>>> 117ebafe7d13bcea35904b6a68627d6ecb189209
 
 const RegisterForm = () => {
   const { error, isAuthenticated, loading } = useAuth();
