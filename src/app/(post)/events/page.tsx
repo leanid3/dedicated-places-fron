@@ -11,15 +11,15 @@ const Events = () => {
           <div className={style.event}>
             <div className={style.left}>
               <h2 className={style.h2}>Мероприятие</h2>
-              <p>
+              <p className={style.text}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
                 non sequi quaerat at temporibus facilis fugit, incidunt
                 praesentium fuga nesciunt totam aliquam saepe voluptatem
                 perspiciatis beatae eveniet quibusdam quis blanditiis.
               </p>
               <p className={style.bot}>
-                <p>Адрес</p>
-                <p>Дата и время</p>
+                <p className={style.text}>Адрес</p>
+                <p className={style.text}>Дата и время</p>
               </p>
             </div>
             <div className={style.right}>
@@ -29,15 +29,15 @@ const Events = () => {
           <div className={style.event}>
             <div className={style.left}>
               <h2 className={style.h2}>Мероприятие</h2>
-              <p>
+              <p className={style.text}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
                 non sequi quaerat at temporibus facilis fugit, incidunt
                 praesentium fuga nesciunt totam aliquam saepe voluptatem
                 perspiciatis beatae eveniet quibusdam quis blanditiis.
               </p>
               <p className={style.bot}>
-                <p>Адрес</p>
-                <p>Дата и время</p>
+                <p className={style.text}>Адрес</p>
+                <p className={style.text}>Дата и время</p>
               </p>
             </div>
             <div className={style.right}>
@@ -47,15 +47,15 @@ const Events = () => {
           <div className={style.event}>
             <div className={style.left}>
               <h2 className={style.h2}>Мероприятие</h2>
-              <p>
+              <p className={style.text}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
                 non sequi quaerat at temporibus facilis fugit, incidunt
                 praesentium fuga nesciunt totam aliquam saepe voluptatem
                 perspiciatis beatae eveniet quibusdam quis blanditiis.
               </p>
               <p className={style.bot}>
-                <p>Адрес</p>
-                <p>Дата и время</p>
+                <p className={style.text}>Адрес</p>
+                <p className={style.text}>Дата и время</p>
               </p>
             </div>
             <div className={style.right}>
