@@ -1,13 +1,13 @@
 // hooks/useAuth.ts
-import { useState, useEffect, useCallback } from 'react';
-import { AuthState, LoginData, RegisterData } from '@/types/types'; // Adjust the import path as necessary
+import { useState, useEffect, useCallback } from "react";
+import { AuthState, LoginData, RegisterData } from "@/types/types"; // Adjust the import path as necessary
 export default function useAuth() {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
     loading: true,
     error: null,
   });
-  const base_url = "http://127.0.0.1:8000";
+  const base_url = "http://194.87.147.159:8000";
 
   useEffect(() => {
     checkAuth();

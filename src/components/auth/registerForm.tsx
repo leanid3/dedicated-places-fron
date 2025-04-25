@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
-import style from "./register.module.css";
+import style from "./regLog.module.css";
 // import { useMask } from "@react-input/mask";
 
 const RegisterForm = () => {
