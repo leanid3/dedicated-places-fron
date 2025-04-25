@@ -16,7 +16,7 @@ const Header = () => {
           <Link className={style.link} href="/events">
             МЕРОПРИЯТИЯ
           </Link>
-          <Link className={style.link} href="#">
+          <Link className={style.link} href="/blog">
             БЛОГ
           </Link>
           <Link className={style.link} href="/login">

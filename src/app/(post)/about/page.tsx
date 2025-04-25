@@ -2,7 +2,7 @@
 import style from "./about.module.css";
 import Team from "@/components/team/Team";
 
-const Events = () => {
+const About = () => {
   return (
     <div className={style.main}>
       <h1 className={style.h1}>О нас</h1>
@@ -38,4 +38,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default About;
