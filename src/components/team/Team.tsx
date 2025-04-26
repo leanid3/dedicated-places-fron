@@ -15,23 +15,23 @@ const Team = () => {
       <div className={style.empls}>
         <div className={style.empl}>
           <div className={style.emplImg1}></div>
-          <p>Сотрудник</p>
-          <p>Должность</p>
+          <p>Козловцев Савелий Олегович</p>
+          <p>Web-дизайн</p>
         </div>
         <div className={style.empl}>
           <div className={style.emplImg2}></div>
-          <p>Сотрудник</p>
-          <p>Должность</p>
+          <p>Саркисян Эдуард Михайлович</p>
+          <p>Маркетинг</p>
         </div>
         <div className={style.empl}>
           <div className={style.emplImg3}></div>
-          <p>Сотрудник</p>
-          <p>Должность</p>
+          <p>Терентьев Никита Игоревич</p>
+          <p>Frontend разработчик</p>
         </div>
         <div className={style.empl}>
           <div className={style.emplImg4}></div>
-          <p>Сотрудник</p>
-          <p>Должность</p>
+          <p>Гарипов Равиль Рафаэлевич</p>
+          <p>Backend разработчик</p>
         </div>
       </div>
     </div>

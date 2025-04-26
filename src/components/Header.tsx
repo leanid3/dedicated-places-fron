@@ -25,6 +25,9 @@ const Header = () => {
           <Link className={style.lr} href="/register">
             РЕГИСТРАЦИЯ
           </Link>
+          <Link className={style.lr} href="/register">
+            КАТЕГОРИИ
+          </Link>
         </div>
       </nav>
     </header>

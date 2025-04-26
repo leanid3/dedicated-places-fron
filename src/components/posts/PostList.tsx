@@ -9,7 +9,6 @@ interface PostsProps {
 const PostList = ({ posts }: PostsProps) => {
   return (
     <div className={style.main}>
-      <h1 className={style.h1}>Категория</h1>
       {posts.map((post) => (
         <PostCard key={post.post_id} post={post} />
       ))}
