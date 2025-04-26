@@ -1,9 +1,18 @@
+"use client"
 import Link from "next/link";
 import style from "./Header.module.css";
+import { useEffect } from "react";
 
 const Header = () => {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `https://cdn.userway.org/widget.js?account=${process.env.NEXT_PUBLIC_USERWAY_KEY}`;
+    document.body.appendChild(script);
+    return () => script.remove();
+  }, []);
   return (
     <header className={style.header}>
+      
       <nav className={style.nav}>
         <Link className={style.icon} href={"/"}></Link>
         <div className={style.links}>
