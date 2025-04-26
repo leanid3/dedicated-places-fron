@@ -19,14 +19,14 @@ const Header = () => {
           <Link className={style.link} href="/blog">
             БЛОГ
           </Link>
+          <Link className={style.link} href="/categories">
+            КАТЕГОРИИ
+          </Link>
           <Link className={style.link} href="/login">
             ВХОД
           </Link>
           <Link className={style.lr} href="/register">
             РЕГИСТРАЦИЯ
-          </Link>
-          <Link className={style.lr} href="/register">
-            КАТЕГОРИИ
           </Link>
         </div>
       </nav>
