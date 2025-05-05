@@ -4,12 +4,12 @@ const Footer = () => {
   return (
     <footer className={style.footer}>
       <div className={style.liaison}>
-        <p>Mail.ru</p>
-        <p>+7(999)999-99-99</p>
+        <p>garavil1313@gmail.com</p>
+        <p>+7(906)123-78-00</p>
         <p>Юр адрес</p>
       </div>
       <div>Соцсети</div>
-      <div className={style.cop}>копирайты, 2025</div>
+      <div className={style.cop}>Копирайты, 2025</div>
     </footer>
   );
 };

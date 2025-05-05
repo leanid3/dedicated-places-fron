@@ -10,9 +10,7 @@ export default function useAuth() {
   });
   const base_url = "http://194.87.147.159:8000";
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
+
 
   const setLoading = (loading: boolean) => {
     setAuthState((prev) => ({ ...prev, loading }));
@@ -85,6 +83,10 @@ export default function useAuth() {
     },
     [lastChecked, authState.user]
   );
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   const register = async (data: RegisterData) => {
     setLoading(true);

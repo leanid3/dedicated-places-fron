@@ -1,3 +1,4 @@
+import PostFull from "@/components/posts/PostFull";
 import { getPost} from "@/lib/posts";
 interface PostProps {
     params: Promise<{
@@ -10,9 +11,6 @@ export default async function Post({ params }: PostProps) {
     const post  = await getPost(Number(resolvedParams.id));
 
     return (
-        <div>
-            <h1>{post.title}</h1>
-            <p>{post.content}</p>
-        </div>
+      <PostFull post={post} />
     );
 }

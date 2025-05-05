@@ -6,11 +6,18 @@ const Team = () => {
     <div className={style.concl}>
       <h3 className={style.h3nc}>Помогаем людям с инвалидностью</h3>
       <p className={style.textConcl}>
-        Помогаем людям с инвалидностью, используя тото сето там та там и туда
-        сюда Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-        corporis quisquam tempore! Repellendus necessitatibus soluta veritatis
-        recusandae laudantium atque optio. Fugiat delectus itaque, tenetur
-        beatae eum assumenda totam perspiciatis rerum.
+        <span className="px-30">
+        Наш сайт — это удобный гид по доступным заведениям, где каждый может
+        найти места с комфортными условиями для людей с ограниченными
+        возможностями здоровья. Мы собираем информацию о библиотеках, кафе,
+        музеях, парках и других учреждениях, проверяем их оснащенность и
+        публикуем отзывы посетителей.
+        </span>
+      </p>
+      <p className={style.textConcl}>
+        <span className="px-30">
+        Наша цель — сделать городскую среду более открытой и удобной для всех.
+        </span>
       </p>
       <div className={style.empls}>
         <div className={style.empl}>
