@@ -62,9 +62,7 @@ const PostFull = ({ post }: PostFullProps) => {
 
     {/* Комментарии */}
     {post.comments && post.comments.length > 0 && (
-     
         <CommentsList comments={post.comments} comments_count={post.comment_count}/>
-   
     )}
   </div>
   );

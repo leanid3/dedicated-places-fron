@@ -17,8 +17,13 @@ export interface Tag {
 }
 
 export interface User {
-    name: string;
-    email: string;
+  id: number;
+  name: string;
+  email: string;
+  phone?: string;
+  age?: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Comment {
@@ -78,4 +83,7 @@ export interface RegisterData extends LoginData {
   email: string;
   password: string;
   password_confirmation: string;
+  phone: string | null;
+  fio: string;
+  age: number;
 }

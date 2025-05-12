@@ -1,19 +1,13 @@
 .page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
   display: grid;
   grid-template-rows: 20px 1fr 20px;
   align-items: center;
   justify-items: center;
-  min-height: 100svh;
+  min-height: 100vh;
   padding: 80px;
   gap: 64px;
-  font-family: var(--font-geist-sans);
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,6 +26,10 @@
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
+  width: 100%; /* Занимает всю ширину */
+  max-width: 1200px; /* Ограничение ширины */
+  margin: 0 auto; /* Центрирование */
+  padding: 0 20px; /* Отступы по бокам */
 }
 
 .main ol {
@@ -169,23 +167,26 @@ a.secondary {
   align-items: center;
   display: flex;
   justify-content: center;
-  background-image: url("bg.jpg");
+  background-image: url("@/image/bg.jpg");
   background-size: cover;
   background-position: top;
   height: 40vh;
   position: relative;
+  width: 100%; /* Занимает всю ширину */
 }
+
 
 .imgHop {
   position: absolute;
-  background-image: url(./Contrast.svg);
+  background-image: url('@/image/Contrast.svg');
   background-size: cover;
   width: 200px;
   height: 200px;
-  border-radius: 20em;
+  border-radius: 50%;
   bottom: 0;
   margin-bottom: -100px;
   right: 150px;
+  opacity: 0.5;
 }
 
 @media (min-width: 720px) {
@@ -200,10 +201,21 @@ a.secondary {
   }
 }
 
+
 @media (max-width: 720px) {
-  .h1 {
-    font-size: 3rem;
-    padding-left: 30px;
+  .main {
+    padding: 0 10px; /* Уменьшенные отступы для мобильных устройств */
+  }
+
+  .hop {
+    height: 30vh;
+  }
+
+  .imgHop {
+    width: 150px;
+    height: 150px;
+    right: 50px;
+    margin-bottom: -75px;
   }
 }
 
@@ -211,9 +223,10 @@ a.secondary {
   font-weight: 700;
   color: white;
   text-align: left;
-
+  font-size: 3rem;
   padding-bottom: 15px;
 }
+
 
 .yellow {
   color: #ebc03d;

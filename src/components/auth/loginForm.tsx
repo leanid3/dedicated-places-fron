@@ -3,23 +3,15 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
 import style from "./regLog.module.css";
-// import { useMask } from "@react-input/mask";
 
 const LoginForm = () => {
-  const { register, error, isAuthenticated, loading } = useAuth();
+  const { login, error, isAuthenticated, loading } = useAuth();
   const router = useRouter();
 
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    password_confirmation: "",
   });
-
-  // const telMask = useMask({
-  //   mask: "+_(___)-___-__-__",
-  //   replacement: { _: /\d/ },
-  // });
 
   // Перенаправление если пользователь уже авторизован
   useEffect(() => {
@@ -31,40 +23,35 @@ const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Проверка совпадения паролей на клиенте
-    if (formData.password !== formData.password_confirmation) {
-      alert("Passwords do not match!");
-      return;
-    }
-
     try {
-        await register({
-        name: formData.name,
+      const result = await login({
         email: formData.email,
         password: formData.password,
-        password_confirmation: formData.password_confirmation,
       });
 
-      console.log("register success");
-      router.push("/login");
+      if (result?.success) {
+        router.push("/profile");
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Login error:", error);
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className={style.loading}>Загрузка...</div>;
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <h1 className={style.h1}>Вход</h1>
+
       <input
-        type="text"
-        placeholder="Логин"
-        value={formData.name}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        type="email"
+        placeholder="Эл. Почта"
+        value={formData.email}
+        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         required
         className={style.inp}
       />
+
       <input
         type="password"
         placeholder="Пароль"
@@ -76,7 +63,7 @@ const LoginForm = () => {
       />
 
       {error && (
-        <div className="text-red-500">
+        <div className={style.error}>
           {typeof error === "string"
             ? error
             : Object.entries(error).map(([field, messages]) => (
@@ -90,8 +77,12 @@ const LoginForm = () => {
         </div>
       )}
 
-      <button type="submit" className={style.but2}>
-        Войти
+      <button 
+        type="submit" 
+        className={style.but2}
+        disabled={loading}
+      >
+        {loading ? "Вход..." : "Войти"}
       </button>
     </form>
   );

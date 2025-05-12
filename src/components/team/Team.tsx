@@ -38,7 +38,7 @@ const Team = () => {
         <div className={style.empl}>
           <div className={style.emplImg4}></div>
           <p>Гарипов Равиль Рафаэлевич</p>
-          <p>Backend разработчик</p>
+          <p>Backend/devops</p>
         </div>
       </div>
     </div>
