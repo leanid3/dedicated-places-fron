@@ -27,7 +27,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (isAuthenticated) router.push("/profile");
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

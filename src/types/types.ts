@@ -19,6 +19,8 @@ export interface Tag {
 export interface User {
   id: number;
   name: string;
+  fio: string;
+  role: 'admin' | 'user' | 'companion';
   email: string;
   phone?: string;
   age?: number;
@@ -27,6 +29,7 @@ export interface User {
 }
 
 export interface Comment {
+    comment_id: number,
     parent_id: number,
     title: string,
     comment: string,
@@ -48,24 +51,24 @@ export interface Post {
     excerpt: string;
     slug: string;
     user_id: number;
-    status: 'archived' | 'published' | 'draft';
+    status: string;
     type: string;
     stock: number;
     price: number | null;
-    MultiFields: MultiField | null; // Specify type if known
-    params: string[];
+    MultiFields: MultiField | null;
+    params: Record<string, string>;
     SEO_title: string;
     SEO_description: string;
     SEO_keywords: string;
     locale: string;
     tags: Tag[] | null;
+    category_id: number;
     comment_count: number;
-    comment_status: 'open' | 'closed';
-    comments: Comment[] | null; // Specify type if known
+    comment_status: string;
+    comments: Comment[] | null;
     created_at: Date;
     updated_at: Date;
 }
-
 
 export interface AuthState {
   user: User | null;

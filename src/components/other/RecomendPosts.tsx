@@ -8,24 +8,15 @@ interface RecomendPostsProps {
 }
 
 const RecomendPosts = ({ posts }: RecomendPostsProps) => {
-    return (
-        <div className={style.popularPlaces}>
+  return (
+    <div>
+      <div className="text-center">
         <h2 className={style.h2}>Популярные места</h2>
-        <div className={style.slider}>
-          <div className={style.imageSlider}>
-            <div className={style.arrows}>
-              <div className={style.arrowLeft}>
-                <div className={style.imgArrow}></div>
-              </div>
-              <div className={style.arrowRight}>
-                <div className={style.imgArrow}></div>
-              </div>
-            </div>
-          </div>
-        <RecomendSlider posts={posts}/>
-        </div>
       </div>
-    );
-  };
+
+      <RecomendSlider posts={posts} />
+    </div>
+  );
+};
 
 export default RecomendPosts;

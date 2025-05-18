@@ -2,7 +2,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useAuth from "@/lib/hooks/useAuth";
-import { User } from "@/types/types";
 
 export default function Profile() {
   const router = useRouter();
@@ -21,6 +20,7 @@ export default function Profile() {
       router.push("/login");
     }
   }, [isAuthenticated, loading, router]);
+
 
   if (loading) {
     return (
@@ -47,6 +47,7 @@ export default function Profile() {
     return null;
   }
 
+  console.log(user);
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4">Профиль пользователя</h1>

@@ -3,6 +3,7 @@ import CategoriesList from "@/components/categories/CategoriesList";
 import { getCategories } from "@/lib/categories";
 import { useQuery } from "@tanstack/react-query";
 import { Category } from "@/types/types";
+import style from "@/components/categories/categories.module.css";
 
 const CategoriesPage = () => {
   const {
@@ -21,16 +22,16 @@ const CategoriesPage = () => {
   }
 
   return (
-    <div>
+    <div className="container mx-auto">
+      <h1 className={style.h1}>Категории</h1>
+
       {categories && categories.length > 0 ? (
-        <div className="">
-          <CategoriesList categories={categories} />
-        </div>
+        <CategoriesList categories={categories} />
       ) : (
         <div>категории не найдены</div>
       )}
     </div>
   );
-}
+};
 
-export default CategoriesPage
+export default CategoriesPage;

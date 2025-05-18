@@ -22,11 +22,7 @@ const PostFull = ({ post }: PostFullProps) => {
         >
           {post.status === "published" ? "Опубликован" : "Не опубликован"}
         </span>
-        {post.price !== null && (
-          <span className="text-lg font-semibold text-gray-800">
-            {post.price} ₽
-          </span>
-        )}
+    
       </div>
     </div>
 

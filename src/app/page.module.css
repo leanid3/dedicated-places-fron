@@ -167,7 +167,7 @@ a.secondary {
   align-items: center;
   display: flex;
   justify-content: center;
-  background-image: url("@/image/bg.jpg");
+  background-image: url("../image/bg.jpg");
   background-size: cover;
   background-position: top;
   height: 40vh;
@@ -178,7 +178,7 @@ a.secondary {
 
 .imgHop {
   position: absolute;
-  background-image: url('@/image/Contrast.svg');
+  background-image: url('../image/Contrast.svg');
   background-size: cover;
   width: 200px;
   height: 200px;

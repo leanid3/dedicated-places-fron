@@ -9,7 +9,7 @@ export default function useAuth() {
     error: null,
   });
   
-  const base_url = "http://localhost:8000";
+  const base_url = "http://194.87.147.159:8000/";
   const [lastChecked, setLastChecked] = useState<number>(0);
 
   // Упрощенная обработка токена
@@ -40,7 +40,7 @@ export default function useAuth() {
       
       const userData = await response.json();
       setAuthState({
-        user: userData,
+        user: userData.data,
         loading: false,
         error: null,
       });

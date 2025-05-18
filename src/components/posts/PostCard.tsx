@@ -7,7 +7,7 @@ interface PostProps {
 
 const PostCard = ({ post }: PostProps) => {
   return (
-    <article className="flex flex-col bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+    <article className="flex flex-col bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow w-full">
     <div className="h-48 bg-gray-200 flex items-center justify-center">
       <span className="text-gray-500">Изображение</span>
     </div>

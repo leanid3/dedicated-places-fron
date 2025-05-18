@@ -6,3 +6,40 @@ body {
   font-weight: 500;
   font-style: normal;
 }
+
+
+/* Стили для точек */
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #4F46E5;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #4F46E5;
+}
+
+/* Стили для стрелок */
+.slick-prev:before,
+.slick-next:before {
+  color: #4F46E5;
+  font-size: 24px;
+}
+
+.slick-prev {
+  left: -30px;
+}
+
+.slick-next {
+  right: -30px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .slick-prev {
+    left: -10px;
+  }
+  
+  .slick-next {
+    right: -10px;
+  }
+}

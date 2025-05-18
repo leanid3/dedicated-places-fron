@@ -5,7 +5,7 @@ import RecomendPosts from "@/components/other/RecomendPosts";
 import { getCategory } from "@/lib/categories";
 export default async function Home() {
   
-  const randNumber = getRandomNumber(1, 24);
+  const randNumber = getRandomNumber(1, 20);
   const recommendedPosts = await getCategory(randNumber);
   
   return (
