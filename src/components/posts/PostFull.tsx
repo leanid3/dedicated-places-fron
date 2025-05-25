@@ -1,5 +1,5 @@
 "use client";
-import { Post } from "@/types/types";
+import { Post, Comment } from "@/types/types";
 import CommentsList from "../comments/CommentsList";
 
 interface PostFullProps {
@@ -46,10 +46,10 @@ const PostFull = ({ post }: PostFullProps) => {
         <ul className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <li
-              key={tag.tag_id}
+              key={typeof tag === 'object' ? tag.tag_id : tag}
               className="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full"
             >
-              #{tag.name}
+              #{typeof tag === 'object' && 'name' in tag ? tag.name : ''}
             </li>
           ))}
         </ul>
@@ -57,8 +57,8 @@ const PostFull = ({ post }: PostFullProps) => {
     )}
 
     {/* Комментарии */}
-    {post.comments && post.comments.length > 0 && (
-        <CommentsList comments={post.comments} comments_count={post.comment_count}/>
+    {Array.isArray(post.comments) && post.comments.length > 0 && (
+        <CommentsList comments={post.comments as Comment[]} comments_count={post.comment_count}/>
     )}
   </div>
   );

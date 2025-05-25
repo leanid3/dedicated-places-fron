@@ -56,16 +56,17 @@ export interface Post {
     stock: number;
     price: number | null;
     MultiFields: MultiField | null;
-    params: Record<string, string>;
+    params: Record<string, string> | null | object;
     SEO_title: string;
     SEO_description: string;
     SEO_keywords: string;
     locale: string;
-    tags: Tag[] | null;
+    tags: Tag[] | null | Array<number>;
     category_id: number;
     comment_count: number;
     comment_status: string;
-    comments: Comment[] | null;
+    work_hours: string;
+    comments: Comment[] | null | Array<number>;
     created_at: Date;
     updated_at: Date;
 }

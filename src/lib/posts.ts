@@ -30,12 +30,12 @@ export const getPosts = async (category_id: number) : Promise<Post[]> => {
 }
 
 /**
- * Получаем посты по пагинации для отображения в таблице
+ * Получаем посты по пагинации для администратора
  * @param page страница
  * @param limit количество постов на странице
  * @returns 
  */
-export const getPostsPagination = async (page: number, limit: number) => {
+export const getPostsPaginationAdmin = async (page: number, limit: number) => {
     try {
         const response = await fetch(`${API_URL}/api/v1/admin/posts?page=${page}&limit=${limit}`, {
             headers: {
@@ -51,6 +51,28 @@ export const getPostsPagination = async (page: number, limit: number) => {
     }
 }
 
+
+/**
+ * Получаем посты по пагинации для пользователя
+ * @param page страница
+ * @param limit количество постов на странице
+ * @returns 
+ */
+export const getPostsPaginationUser = async (page: number, limit: number) => {
+    try {
+        const response = await fetch(`${API_URL}/api/v1/posts?page=${page}&limit=${limit}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+        })
+        if (!response.ok) throw new Error('посты не найдены')
+        const posts = await response.json()
+        return posts.data
+    } catch (e) {
+        console.error('Ошибка при получении постов' + e)
+        throw new Error('не удалось получить посты')
+    }
+}
 
 
 /**
@@ -163,3 +185,6 @@ export const deletePost = async (post_id: number) => {
         throw new Error('не удалось удалить пост');
     }
 }
+
+
+

@@ -17,8 +17,8 @@ export default function RootLayout({
 }>) {
   // useAuthCheck()
   return (
-    <html lang="en">
-
+    <html lang="ru">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
       <body>
         <Header />
         <main>

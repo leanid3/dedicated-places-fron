@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { updatePost } from "@/lib/posts";
 
 const EditPostForm = ({post}: {post: Post}) => {
-    const [tags, setTags] = useState<Tag[] | null>(post.tags);
+    const [tags, setTags] = useState<Tag[] | null>(post.tags as Tag[]);
     const [categories, setCategories] = useState<Category[] | null>(null);
     const [postData, setPostData] = useState<Post>({
         post_id: post.post_id,
@@ -32,9 +32,10 @@ const EditPostForm = ({post}: {post: Post}) => {
         comments: post.comments,
         created_at: post.created_at,
         updated_at: post.updated_at,
+        work_hours: post.work_hours,
     });
 
-    const [paramsData, setParamsData] = useState<Record<string, string>>(post.params || {});
+    const [paramsData, setParamsData] = useState<Record<string, string>>(post.params ? post.params as Record<string, string> : {});
 
     const handleParamsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -121,7 +122,7 @@ const EditPostForm = ({post}: {post: Post}) => {
                     id="tags" 
                     multiple 
                     name="tags" 
-                    value={postData.tags?.map(tag => tag.tag_id.toString())}
+                    value={postData.tags?.map(tag => typeof tag === 'object' ? tag.tag_id.toString() : tag.toString())}
                     onChange={handleTagSelectChange}
                 >
                     {tags?.map((tag) => (

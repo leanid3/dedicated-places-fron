@@ -1,12 +1,12 @@
 "use client";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { deletePost, getPostsPagination } from "@/lib/posts";
+import { deletePost, getPostsPaginationAdmin } from "@/lib/posts";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Paginator } from "primereact/paginator";
 import { Button } from "primereact/button";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Tag, Post } from "@/types/types";
+import { Post } from "@/types/types";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Toast } from "primereact/toast";
 const PostsTableContent  = () => {
@@ -37,9 +37,10 @@ const PostsTableContent  = () => {
 
     return (
       <div className="flex flex-wrap gap-2 text-sm text-gray-500 font-light">
-        {post.tags.map((tag: Tag) => (
-          <div key={tag.tag_id}>{tag.name}</div>
-        ))}
+        {post.tags.map((tag) => {
+          if (typeof tag === 'number') return null;
+          return <div key={tag.tag_id}>{tag.name}</div>;
+        })}
       </div>
     );
   };
@@ -89,7 +90,7 @@ const PostsTableContent  = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const posts = await getPostsPagination(Number(pageNumber), Number(limit));
+        const posts = await getPostsPaginationAdmin(Number(pageNumber), Number(limit));
         setPosts(posts);
         setLoading(false);
       } catch (error) {

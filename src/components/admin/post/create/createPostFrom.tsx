@@ -32,6 +32,7 @@ const CreatePostForm = () => {
         comments: [],
         created_at: new Date(),
         updated_at: new Date(),
+        work_hours: "",
     });
 
     const getCategoriesItems = async () => {
@@ -108,7 +109,7 @@ const CreatePostForm = () => {
                     id="tags" 
                     multiple 
                     name="tags" 
-                    value={postData.tags?.map(tag => tag.tag_id.toString())}
+                    value={postData.tags?.map(tag => typeof tag === 'object' ? tag.tag_id.toString() : tag.toString())}
                     onChange={handleTagSelectChange}
                 >
                     {tags?.map((tag) => (
