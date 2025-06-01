@@ -56,12 +56,12 @@ export default function Profile() {
         <ProfileField label="Имя" value={user.name} />
         <ProfileField label="Email" value={user.email} />
         {user.phone && <ProfileField label="Телефон" value={user.phone} />}
-        {user.age && (
+        {/* {user.age && (
           <ProfileField 
             label="Дата рождения" 
             value={new Date(user.age).toLocaleDateString()} 
           />
-        )}
+        )} */}
       </div>
 
       <button

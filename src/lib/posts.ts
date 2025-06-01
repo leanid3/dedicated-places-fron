@@ -1,3 +1,4 @@
+import { StorePostFormData, UpdatePostFormData } from "@/types/forms";
 import { Post } from "@/types/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -109,20 +110,32 @@ export const searchPosts = async (query?: string | null | undefined, tags?: stri
  * @param post пост
  * @returns 
  */
-export const createPost = async (post: Post) => {
+export const createPost = async (post: StorePostFormData) => {
     try {
+        // Convert params to JSON string if it exists
+        const postData = {
+            ...post,
+            params: post.params ? JSON.stringify(post.params) : undefined
+        };
+
         const response = await fetch(`${API_URL}/api/v1/posts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             },
-            body: JSON.stringify(post),
+            body: JSON.stringify(postData),
         });
         
-        if (!response.ok) throw new Error('Не удалось создать пост');
+        if (!response.ok && response.status !== 422) throw new Error('Не удалось создать пост');
         
         const createdPost = await response.json();
+        
+        if (createdPost.errors) {
+            return createdPost;
+        }
+        
         return createdPost.data; 
 
     } catch (e) {
@@ -137,30 +150,36 @@ export const createPost = async (post: Post) => {
  * @param post пост
  * @returns 
  */
-export const updatePost = async (postId: number, post: Post) => {
+export const updatePost = async (postId: number, UpdateData: UpdatePostFormData) => {
     try {
-        // Access to fetch at 'http://localhost:3000/' (redirected from 'http://localhost:8000/api/v1/posts') from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-        
         const response = await fetch(`${API_URL}/api/v1/posts/${postId}`, {
             method: 'PUT',
             headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Access-Control-Allow-Origin': window.location.origin,
                 'Access-Control-Allow-Credentials': 'true',
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             },
-            body: JSON.stringify(post),
+            body: JSON.stringify(UpdateData),
         });
-        
-        if (!response.ok) throw new Error('Не удалось обновить пост');
-        
-        const updatedPost = await response.json(); // Исправлено имя переменной
-        return updatedPost.data;
 
+        const updatedPost = await response.json();
+
+        // ошибка валидации, если она существует
+        if (updatedPost.errors) {
+            return updatedPost;
+        }
+
+        
+        if (!response.ok && response.status !== 422){ 
+            console.error('Ошибка при обновлении поста:', updatedPost);
+            throw new Error( 'status: ' + response.status + ' message: ' + response.statusText);
+        }
+    
+        return updatedPost.data;
     } catch (e) {
-        console.error('Ошибка при обновлении поста:', e);
-        throw new Error('Не удалось обновить пост');
+        throw new Error(e as string);
     }
 }
 

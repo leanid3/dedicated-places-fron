@@ -9,7 +9,7 @@ export default function useAuth() {
     error: null,
   });
   
-  const base_url = "http://194.87.147.159:8000";
+  const base_url = "http://localhost:8000";
   const [lastChecked, setLastChecked] = useState<number>(0);
 
   // Упрощенная обработка токена
@@ -25,7 +25,7 @@ export default function useAuth() {
 
     const token = getToken();
     if (!token) {
-      setAuthState(prev => ({ ...prev, loading: false }));
+      setAuthState(prev => ({ ...prev, loading: false, user: null }));
       return false;
     }
 
@@ -78,7 +78,7 @@ export default function useAuth() {
             : responseData.message || "Registration failed"
         );
       }
-      console.log(responseData);
+
       if (!responseData.token) {
         throw new Error("No access token received");
       }
@@ -146,11 +146,30 @@ export default function useAuth() {
     }
   };
 
-  // Остальные методы (login, logout) аналогично...
+  // Добавляем слушатель изменения localStorage для синхронизации между вкладками
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'access_token') {
+        if (e.newValue) {
+          checkAuth(true);
+        } else {
+          setAuthState({
+            user: null,
+            loading: false,
+            error: null,
+          });
+        }
+      }
+    };
 
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [checkAuth]);
+
+  // Проверяем авторизацию при монтировании
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [checkAuth]);
 
   return {
     ...authState,

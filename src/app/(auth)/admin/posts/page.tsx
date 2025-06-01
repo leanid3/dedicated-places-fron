@@ -111,8 +111,17 @@ const PostsTableContent  = () => {
 
   return (
     <div>
-      <Toast ref={toast} className="absolute top-0 right-0 z-50 " />
-      <ConfirmDialog className="absolute top-0 right-0 border-none rounded-none bg-transparent " />
+      <Toast ref={toast} className="absolute top-0 right-0 z-50" />
+      <ConfirmDialog 
+        className="p-4"
+        acceptClassName="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300"
+        rejectClassName="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-300"
+        acceptLabel="Удалить"
+        rejectLabel="Отмена"
+        icon="pi pi-exclamation-triangle text-yellow-500"
+        acceptIcon="pi pi-trash"
+        rejectIcon="pi pi-times"
+      />
       <DataTable
         value={posts}
         sortField="title"
@@ -267,7 +276,7 @@ const PostsTableContent  = () => {
       <Paginator
         first={1}
         rows={10}
-        className="mt-4 justify-end "
+        className="mt-4 flex justify-end items-center space-x-2 bg-white p-4 shadow-md rounded-lg"
         totalRecords={100}
         onPageChange={(e) => {
           console.log(e);

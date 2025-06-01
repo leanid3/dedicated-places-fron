@@ -1,44 +1,87 @@
 .concl {
-  margin-top: 200px;
+  margin-top: 100px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .h3nc {
   font-weight: 700;
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
 .textConcl {
   margin-top: 20px;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.6;
+  color: #555;
 }
 
 .empls {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 100px;
-  min-height: 500px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 60px;
+  padding: 20px 0;
 }
 
 .empl {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.empl:hover {
+  transform: translateY(-5px);
+}
+
+.empl p {
+  margin: 0;
+  text-align: center;
+}
+
+.empl p:first-of-type {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.empl p:last-of-type {
+  color: #666;
+  font-size: 1rem;
 }
 
 .emplImg1,
 .emplImg2,
 .emplImg3,
 .emplImg4 {
-  width: 300px;
-  height: 300px;
-  border-radius: 20em;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.emplImg1:hover,
+.emplImg2:hover,
+.emplImg3:hover,
+.emplImg4:hover {
+  transform: scale(1.05);
 }
 
 .emplImg1 {
@@ -55,4 +98,40 @@
 
 .emplImg4 {
   background-image: url(sotr4.png);
+}
+
+@media (max-width: 768px) {
+  .concl {
+    margin-top: 60px;
+  }
+  
+  .empls {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 40px;
+  }
+  
+  .emplImg1,
+  .emplImg2,
+  .emplImg3,
+  .emplImg4 {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .concl {
+    margin-top: 40px;
+    padding: 0 15px;
+  }
+  
+  .empls {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .empl {
+    padding: 15px;
+  }
 }

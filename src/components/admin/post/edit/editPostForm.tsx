@@ -4,35 +4,42 @@ import { getCategories } from "@/lib/categories";
 import { Post, Tag, Category } from "@/types/types";
 import { useEffect, useState } from "react";
 import { updatePost } from "@/lib/posts";
+import { UpdatePostFormData } from "@/types/forms";
+import ErrorMessage from "@/components/template/input/errorMessage";
 
 const EditPostForm = ({post}: {post: Post}) => {
     const [tags, setTags] = useState<Tag[] | null>(post.tags as Tag[]);
     const [categories, setCategories] = useState<Category[] | null>(null);
-    const [postData, setPostData] = useState<Post>({
-        post_id: post.post_id,
+    const [postData, setPostData] = useState<UpdatePostFormData>({
         title: post.title,
         content: post.content,
         excerpt: post.excerpt,
         slug: post.slug,
-        user_id: post.user_id,
         status: post.status,
         type: post.type,
         stock: post.stock,
         price: Number(post.price),
-        MultiFields: post.MultiFields,
-        params: post.params,
-        SEO_title: post.SEO_title,
-        SEO_description: post.SEO_description,
-        SEO_keywords: post.SEO_keywords,
+        params: post.params as Record<string, string> || {},
         locale: post.locale,
-        tags: post.tags,
+        tags: Array.isArray(post.tags) 
+            ? post.tags.map(tag => typeof tag === 'object' ? tag.tag_id : tag)
+            : [],
         category_id: post.category_id,
-        comment_count: post.comment_count,
         comment_status: post.comment_status,
-        comments: post.comments,
-        created_at: post.created_at,
-        updated_at: post.updated_at,
-        work_hours: post.work_hours,
+    });
+    const [errors, setErrors] = useState({
+        title: '',
+        content: '',
+        excerpt: '',
+        tags: '',
+        category_id: '',
+        status: '',
+        type: '',
+        stock: '',
+        price: '',
+        locale: '',
+        comment_status: '',
+        params: '',
     });
 
     const [paramsData, setParamsData] = useState<Record<string, string>>(post.params ? post.params as Record<string, string> : {});
@@ -79,12 +86,10 @@ const EditPostForm = ({post}: {post: Post}) => {
     const handleTagSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const options = Array.from(e.target.selectedOptions);
         const selectedTagIds = options.map(option => Number(option.value));
-        if (!tags) return; 
-        const selectedTags = tags.filter(tag => selectedTagIds.includes(tag.tag_id));
         setPostData(prev => ({
             ...prev,
-            tags: selectedTags
-          }));
+            tags: selectedTagIds
+        }));
     }
 
     const handleCategorySelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -96,9 +101,12 @@ const EditPostForm = ({post}: {post: Post}) => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(postData);
-        const response = await updatePost(postData.post_id, postData);
-        console.log(response);
+        const response = await updatePost(post.post_id, postData as UpdatePostFormData);
+        if (response?.errors !== undefined) {
+            Object.entries(response.errors).forEach(([key, value]) => {
+                setErrors(prev => ({ ...prev, [key]: value }));
+            });
+        }
     }
 
     return (
@@ -106,14 +114,17 @@ const EditPostForm = ({post}: {post: Post}) => {
             <div className="mb-4">
                 <label htmlFor="title" className="block mb-2">Title</label>
                 <input className="border border-gray-300 rounded-md p-2 w-full" type="text" id="title" name="title" value={postData.title} onChange={handleChange} />
+                {errors.title && <ErrorMessage type="error" message={errors.title} />}
             </div>
             <div className="mb-4">
                 <label htmlFor="content" className="block mb-2">Content</label>
                 <textarea className="border border-gray-300 rounded-md p-2 w-full" id="content" name="content" value={postData.content} onChange={handleTextareaChange} />
+                {errors.content && <ErrorMessage type="error" message={errors.content} />}
             </div>
             <div className="mb-4">
                 <label htmlFor="excerpt" className="block mb-2">Excerpt</label>
                 <input className="border border-gray-300 rounded-md p-2 w-full" type="text" id="excerpt" name="excerpt" value={postData.excerpt} onChange={handleChange} />
+                {errors.excerpt && <ErrorMessage type="error" message={errors.excerpt} />}
             </div>
             <div className="mb-4">
                 <label htmlFor="tags" className="block mb-2">Tags</label>
@@ -122,13 +133,14 @@ const EditPostForm = ({post}: {post: Post}) => {
                     id="tags" 
                     multiple 
                     name="tags" 
-                    value={postData.tags?.map(tag => typeof tag === 'object' ? tag.tag_id.toString() : tag.toString())}
+                    value={postData.tags?.map(tagId => tagId.toString()) || []}
                     onChange={handleTagSelectChange}
                 >
                     {tags?.map((tag) => (
                         <option className="border border-gray-300 rounded-md p-2 w-full" key={tag.tag_id} value={tag.tag_id}>{tag.name}</option>
                     ))}
                 </select>
+                {errors.tags && <ErrorMessage type="error" message={errors.tags} />}
             </div>
             <div className="mb-4">
                 <label htmlFor="category_id" className="block mb-2">Category</label>
@@ -143,6 +155,7 @@ const EditPostForm = ({post}: {post: Post}) => {
                         <option className="border border-gray-300 rounded-md p-2 w-full" key={category.category_id} value={category.category_id}>{category.name}</option>
                     ))}
                 </select>
+                {errors.category_id && <ErrorMessage type="error" message={errors.category_id} />}
             </div>
             <div className="mb-4">
                 <label htmlFor="status" className="block mb-2">Status</label>
@@ -150,6 +163,7 @@ const EditPostForm = ({post}: {post: Post}) => {
                     <option value="draft">Draft</option>
                     <option value="published">Published</option>
                 </select>
+                {errors.status && <ErrorMessage type="error" message={errors.status} />}
             </div>
             <div className="mb-4"> 
                 <label htmlFor="type" className="block mb-2">Type</label>
@@ -157,22 +171,22 @@ const EditPostForm = ({post}: {post: Post}) => {
                     <option value="post">Post</option>
                     <option value="page">Page</option>
                 </select>
+                {errors.type && <ErrorMessage type="error" message={errors.type} />}
             </div>
             <div className="mb-4">
                 <label htmlFor="stock" className="block mb-2">Stock</label>
                 <input className="border border-gray-300 rounded-md p-2 w-full" type="number" id="stock" name="stock" value={postData.stock} onChange={handleChange} />
+                {errors.stock && <ErrorMessage type="error" message={errors.stock} />}
             </div>
             <div className="mb-4">
                 <label htmlFor="price" className="block mb-2">Price</label>
                 <input className="border border-gray-300 rounded-md p-2 w-full" type="number" id="price" name="price" value={postData.price ?? 0} onChange={handleChange} />
+                {errors.price && <ErrorMessage type="error" message={errors.price} />}
             </div>
             <div className="mb-4">  
                 <label htmlFor="locale" className="block mb-2">Locale</label>
                 <input className="border border-gray-300 rounded-md p-2 w-full" type="text" id="locale" name="locale" value={postData.locale} onChange={handleChange} />
-            </div>
-            <div className="mb-4">
-                <label htmlFor="comment_count" className="block mb-2">Comment Count</label>
-                <input className="border border-gray-300 rounded-md p-2 w-full" type="number" id="comment_count" name="comment_count" value={postData.comment_count} onChange={handleChange} />
+                {errors.locale && <ErrorMessage type="error" message={errors.locale} />}
             </div>
             <div className="mb-4">
                 <label htmlFor="comment_status" className="block mb-2">Comment Status</label>
@@ -180,6 +194,7 @@ const EditPostForm = ({post}: {post: Post}) => {
                     <option value="open">Open</option>
                     <option value="closed">Closed</option>
                 </select>
+                {errors.comment_status && <ErrorMessage type="error" message={errors.comment_status} />}
             </div>
 
             {/* params, обьект с произвольными параметрами, создаем поле, указваем ключ и значение, полей может быть много, поэтому создаем поле для каждого поля */}
@@ -187,10 +202,11 @@ const EditPostForm = ({post}: {post: Post}) => {
                 <div className="mb-4" key={key}>
                     <label htmlFor={key} className="block mb-2">{key}</label>
                     <input className="border border-gray-300 rounded-md p-2 w-full" type="text" id={key} name={key} value={value} onChange={handleParamsChange} />
+                    {errors.params && <ErrorMessage type="error" message={errors.params} />}
                 </div>
             ))}
 
-            <button className="bg-blue-500 text-white p-2 rounded-md w-full" type="submit">Create</button>
+            <button className="bg-blue-500 text-white p-2 rounded-md w-full hover:bg-blue-600 transition-colors duration-300 cursor-pointer" type="submit">Изменить</button>
         </form>
     );
 };
